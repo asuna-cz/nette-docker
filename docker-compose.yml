@@ -24,14 +24,14 @@ services:
     depends_on:
       - database
   database:
-    image: mariadb
+    image: mysql
     environment:
       MYSQL_DATABASE: asuna
       MYSQL_USER: asuna
       MYSQL_PASSWORD: asuna
       MYSQL_ROOT_PASSWORD: asuna  
     volumes:
-      - ./.docker/mariadb:/var/lib/mysql
+      - ./.docker/dbdata:/var/lib/mysql
   adminer:
     image: adminer
     ports:
