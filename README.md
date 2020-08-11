@@ -35,22 +35,19 @@ Make sure your $USER variable is set ( `echo $USER` ) otherwise just replace `$U
 2) `logout & login`
 3) `sudo systemctl restart docker`
 
-
 > docker-compose: command not found
 
-Make sure you have docker-compose installed. You can install docker and docker-compose like this. Assuming you are using APT \
+Make sure you have docker-compose installed. You can install docker and docker-compose like this. Assuming you are using APT.
 
 `sudo apt update` \
 `sudo apt install docker.io docker-compose`
 
-
 > something is blocking port 80/8080
 
-Change ports in `docker-compose.yml` or stop apps using those ports. That will most likely be Apache or Nginx server. \
+Change ports in `docker-compose.yml` or stop apps using those ports. That will most likely be Apache or Nginx server.
 
 `sudo systemctl stop apache2` \
 `sudo systemctl stop nginx`
-
 
 > Adminer: SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo failed: Name does not resolve
 
