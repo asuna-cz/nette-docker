@@ -4,7 +4,7 @@
 git clone git@github.com:asuna-cz/nette-docker.git
 cd nette-docker
 
-docker run --rm --interactive --tty \
+mkdir app && docker run --rm --interactive --tty \
   --volume $PWD/app/:/app \
   --user $(id -u):$(id -g) \
   composer create-project nette/web-project .
