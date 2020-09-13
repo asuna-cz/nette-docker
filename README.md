@@ -1,8 +1,18 @@
 ## Installation
 
-`git clone git@github.com:asuna-cz/nette-docker.git` \
-`cd nette-docker` \
-`docker-compose up --build`
+```
+git clone git@github.com:asuna-cz/nette-docker.git
+cd nette-docker
+
+docker run --rm --interactive --tty \
+  --volume $PWD/app/:/app \
+  --user $(id -u):$(id -g) \
+  composer create-project nette/web-project .
+
+chmod a+w app/temp/ app/log/
+
+docker-compose up --build
+```
 
 `docker-compose up -d` to run in background
 
@@ -13,7 +23,7 @@ Setup your own password to database in `docker-compose.yml`
 ```
   docker-compose.yml
   ...
-  image: mysql
+  image: mariadb
   environment:
     MYSQL_DATABASE: DB_NAME
     MYSQL_USER: DB_USER
@@ -23,8 +33,8 @@ Setup your own password to database in `docker-compose.yml`
   ...
 ```
 
-It's also very easy to swap MariaDB for MySQL \
-`image: mariadb`
+It's also very easy to swap MySQL for MariaDB  \
+`image: mysql`
 
 ## Possible problems
 > Got permission denied ... /var/run/docker.sock: connect: permission denied
@@ -51,7 +61,7 @@ Change ports in `docker-compose.yml` or stop apps using those ports. That will m
 
 > Adminer: SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo failed: Name does not resolve
 
-Change `server` to `database` instead of `db` while logging in.
+In adminer change `server` to `database` instead of `db` while logging in.
 
 ## What next?
 

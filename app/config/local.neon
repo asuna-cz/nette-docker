@@ -1,7 +1,0 @@
-parameters:
-
-
-database:
-	dsn: 'mysql:host=database;dbname=asuna'
-	user: 'asuna'
-	password: 'asuna'
