@@ -4,34 +4,29 @@ services:
   nginx:
     build:
       context: .
-      dockerfile: ./.docker/nginx/Dockerfile
+      dockerfile: ./docker/nginx/Dockerfile
     volumes:
-      - ./:/var/www/html/
-      - ./.docker/nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./.docker/nginx/sites/:/etc/nginx/sites-available
-      - ./.docker/nginx/conf.d/:/etc/nginx/conf.d
-    depends_on:
-      - php
+      - ./app/:/var/www/html/
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/sites/:/etc/nginx/sites-available
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d
     ports:
       - "80:80"
-      - "443:443"
   php:
     build:
       context: .
-      dockerfile: ./.docker/php/Dockerfile
+      dockerfile: ./docker/php/Dockerfile
     volumes:
-      - ./:/var/www/html/
-    depends_on:
-      - database
+      - ./app/:/var/www/html/
   database:
-    image: mysql
+    image: mariadb
     environment:
       MYSQL_DATABASE: asuna
       MYSQL_USER: asuna
       MYSQL_PASSWORD: asuna
-      MYSQL_ROOT_PASSWORD: asuna  
+      MYSQL_ROOT_PASSWORD: asuna
     volumes:
-      - ./.docker/dbdata:/var/lib/mysql
+      - ./docker/mariadb:/var/lib/mysql
   adminer:
     image: adminer
     ports:
